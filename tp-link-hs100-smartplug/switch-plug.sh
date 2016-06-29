@@ -20,6 +20,20 @@ payload_off="AAAAKtDygfiL/5r31e+UtsWg1Iv5nPCR6LfEsNGlwOLYo4HyhueT9tTu3qPeowAAAC3
 
 payload_query="AAAAI9Dw0qHYq9+61/XPtJS20bTAn+yV5o/hh+jK8J7rh+vLtpbr"
 
+payload_uptime="AAAAP9DygeKK74v+kvfV75S20bTAn/GU7JjHpsWx2LfZ+8G6x7qWtMe+zbncsZOp0vCX8obZqtOgyafBroy2zbDNsA=="
+
+# runtime / uptime
+#0000003fd0f281e28aef8bfe92f7d5ef94b6d1b4c09ff194ec98c7a6c5b1d8b7d9fbc1bac7ba96b4c7becdb9dcb193a9d2f097f286d9aad3a0c9a7c1ae8cb6cdb0cdb0
+#AAAAP9DygeKK74v+kvfV75S20bTAn/GU7JjHpsWx2LfZ+8G6x7qWtMe+zbncsZOp0vCX8obZqtOgyafBroy2zbDNsA==
+
+# set shedule
+#00000030d0f281e28aef8bfe92f7d5ef94b6c5a0d48be492f785e488e4bbdeb0d1b3dfba98a2d9fb9ef091f39ffad8e2d3aed3ae
+#AAAAMNDygeKK74v+kvfV75S2xaDUi+SS94XkiOS73rDRs9+6mKLZ+57wkfOf+tji067Trg==
+
+# set away
+#0000001fd0f293fd89e0bfcba3c6a0d4f6ccb795f297e3bccebbd7b2c1e3d9a2dfa2df
+#AAAAH9Dyk/2J4L/Lo8ag1PbMt5Xyl+O8zrvXssHj2aLfot8=
+
 
 usage() {
  echo Usage:
@@ -78,8 +92,19 @@ case "$cmd" in
   then
      echo ON
   fi
+  ;;
+
+  uptime)
+  output=`sendtoplug $ip $port "$payload_uptime" | base64`
+  #outputx=`sendtoplug $ip $port "$payload_uptime" | hexdump -v -C`
+  #echo ---------------------------------
+  echo $output
+  #echo ---------------------------------
+  #echo $outputx
+  #echo ---------------------------------
 
   ;;
+
   *)
   usage
   ;;
