@@ -24,6 +24,7 @@ payload_query="AAAAI9Dw0qHYq9+61/XPtJS20bTAn+yV5o/hh+jK8J7rh+vLtpbr"
 usage() {
  echo Usage:
  echo $0 ip port on/off/query
+ echo e.g.: $0 11.11.0.4 9999 on
  exit 1
 }
 
@@ -65,11 +66,15 @@ case "$cmd" in
   ;;
   query)
   output=`sendtoplug $ip $port "$payload_query" | base64`
-  if [[ $output == AAACJ* ]] ;
+  #outputHex=`sendtoplug $ip $port "$payload_query" | hexdump -v -C`
+  #echo $output
+  #if [[ $output == AAACJ* ]] ;
+  if [[ $output == AAACKND* ]] ;
   then
      echo OFF
   fi
-  if [[ $output == AAACK* ]] ;
+  #if [[ $output == AAACK* ]] ;
+  if [[ $output == AAACKdD* ]] ;
   then
      echo ON
   fi
